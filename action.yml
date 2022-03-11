@@ -1,0 +1,13 @@
+name: Force Push Changes
+description: Add all changes from the working tree and force push them amended into the latest commit of the repository.
+
+runs:
+  using: "composite"
+  steps:
+    - shell: bash
+      run: |
+        git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+        git config user.name "${GITHUB_ACTOR}"
+        git add .
+        git commit --amend --no-edit
+        git push -f
